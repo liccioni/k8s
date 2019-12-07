@@ -38,3 +38,7 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "1.8"
 	}
 }
+
+tasks.withType<Wrapper> {
+	gradleVersion = "6.0.1"
+}
