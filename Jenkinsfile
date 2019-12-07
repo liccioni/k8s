@@ -1,10 +1,6 @@
 pipeline {
-  agent any {
-//     docker {
-//       image 'gradle/6.0.1-jdk8'
+  agent {
       label 'jenkins-slave'
-//     }
-
   }
   stages {
     stage('Build') {
