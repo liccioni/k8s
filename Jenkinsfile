@@ -13,7 +13,7 @@ pipeline {
       steps {
         script {
           try {
-            sh 'gradle wrapper' //run a gradle task
+//             sh 'gradle wrapper'
             sh './gradlew clean test --no-daemon' //run a gradle task
           } finally {
             junit '**/build/test-results/test/*.xml' //make the junit test results available in any case (success & failure)
