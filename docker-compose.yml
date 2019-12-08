@@ -1,0 +1,9 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:10.6
+    ports:
+      - 55432:5432
+    environment:
+      POSTGRES_USER: esmartit
+      POSTGRES_PASSWORD: 3sm4rt1t
