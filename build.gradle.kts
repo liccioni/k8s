@@ -5,7 +5,7 @@ plugins {
 	id("org.springframework.boot") version "2.2.2.RELEASE"
 	id("io.spring.dependency-management") version "1.0.8.RELEASE"
 	id("com.adarshr.test-logger") version "2.0.0"
-//	id("com.avast.gradle.docker-compose") version "0.10.4"
+	id("com.avast.gradle.docker-compose") version "0.10.4"
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 }
@@ -52,11 +52,11 @@ testlogger {
 	showStandardStreams = true
 }
 
-//dockerCompose.isRequiredBy(tasks.test.get())
-//dockerCompose {
-//	useComposeFiles = listOf("docker-compose.yml")
-//	captureContainersOutput = false
-//	stopContainers = true
-//	removeContainers = true
-//	removeOrphans = true
-//}
+dockerCompose.isRequiredBy(tasks.test.get())
+dockerCompose {
+	useComposeFiles = listOf("docker-compose.yml")
+	captureContainersOutput = false
+	stopContainers = true
+	removeContainers = true
+	removeOrphans = true
+}
