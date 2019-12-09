@@ -1,7 +1,45 @@
 pipeline {
   agent {
-    label 'jenkins-slave'
-  }
+    kubernetes {
+        label 'jenkins-slave'
+        yaml """
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  annotations: {}
+  labels:
+    jenkins: "slave"
+    jenkins/jenkins-slave: "true"
+spec:
+  containers:
+  - env:
+    - name: "JENKINS_AGENT_WORKDIR"
+      value: "/home/jenkins/agent"
+    image: "liccioni/my-slave-image:7.0"
+    name: "jnlp"
+    volumeMounts:
+    - mountPath: "/home/jenkins/agent"
+      name: "workspace-volume"
+      readOnly: false
+    - mountPath: "/var/run/docker.sock"
+      name: "volume-0"
+      readOnly: false
+  hostNetwork: false
+  nodeSelector:
+    beta.kubernetes.io/os: "linux"
+  restartPolicy: "Never"
+  securityContext:
+      privileged: true
+  volumes:
+  - hostPath:
+      path: "/var/run/docker.sock"
+    name: "volume-0"
+  - emptyDir:
+      medium: ""
+    name: "workspace-volume"
+"""
+   }
+}
   stages {
     stage('Build') {
       steps {

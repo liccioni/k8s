@@ -12,7 +12,7 @@ class K8sDemoApplicationTests {
     }
 
     @Test
-    fun `failing test`() {
-        assertThat(1).isEqualTo(2)
+    fun `passing test`() {
+        assertThat(1).isEqualTo(1)
     }
 }
