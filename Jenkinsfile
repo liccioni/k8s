@@ -39,8 +39,8 @@ podTemplate(label: label,
           withEnv(['VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
             sh """
                 docker build \
-                  -t desdrury/first-app:${VERSION}.${COMMIT}  \
-                  -t desdrury/first-app:latest \
+                  -t liccioni/first-app:${VERSION}.${COMMIT}  \
+                  -t liccioni/first-app:latest \
                   .
               """
           }
@@ -49,8 +49,8 @@ podTemplate(label: label,
         stage('Push image') {
           withDockerRegistry([credentialsId: 'docker-hub-user']) {
             withEnv(['VERSION=' + env.VERSION.trim(), 'COMMIT=' + env.COMMIT.trim()]) {
-              sh "docker push desdrury/first-app:${VERSION}.${COMMIT}"
-              sh 'docker push desdrury/first-app:latest'
+              sh "docker push liccioni/first-app:${VERSION}.${COMMIT}"
+              sh 'docker push liccioni/first-app:latest'
             }
           }
         }
@@ -64,7 +64,7 @@ podTemplate(label: label,
               sh """
                 helm upgrade --install first-app \
                   --namespace production \
-                  --set image.repository=desdrury/first-app \
+                  --set image.repository=liccioni/first-app \
                   --set image.tag=${VERSION}.${COMMIT} \
                   --set ingress.enabled=true \
                   --set ingress.hosts[0]=first-app-cicd.192.168.26.11.nip.io \
