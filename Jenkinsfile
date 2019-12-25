@@ -78,4 +78,8 @@ podTemplate(label: label,
       }
 
     }
+  triggers {
+    cron('H */8 * * *')
+    pollSCM('* * * * *')
+  }
 }
