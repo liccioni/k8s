@@ -37,14 +37,12 @@ podTemplate(label: label,
         stage('Build image') {
           env.version = sh returnStdout: true, script: 'cat build.number'
           withEnv(['VERSION=' + env.version.trim(), 'COMMIT=' + env.commit.trim()]) {
-            dir('first-app') {
-              sh """
+            sh """
                 docker build \
                   -t desdrury/first-app:${VERSION}.${COMMIT}  \
                   -t desdrury/first-app:latest \
                   .
               """
-            }
           }
         }
 
