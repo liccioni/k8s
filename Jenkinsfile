@@ -40,8 +40,8 @@ podTemplate(label: label,
             dir('first-app') {
               sh """
                 docker build \
-                  -t liccioni/first-app:${VERSION}.${COMMIT}  \
-                  -t liccioni/first-app:latest \
+                  -t desdrury/first-app:${VERSION}.${COMMIT}  \
+                  -t desdrury/first-app:latest \
                   .
               """
             }
@@ -51,8 +51,8 @@ podTemplate(label: label,
         stage('Push image') {
           withDockerRegistry([credentialsId: 'docker-hub-user']) {
             withEnv(['VERSION=' + env.VERSION.trim(), 'COMMIT=' + env.COMMIT.trim()]) {
-              sh "docker push liccioni/first-app:${VERSION}.${COMMIT}"
-              sh 'docker push liccioni/first-app:latest'
+              sh "docker push desdrury/first-app:${VERSION}.${COMMIT}"
+              sh 'docker push desdrury/first-app:latest'
             }
           }
         }
@@ -78,8 +78,4 @@ podTemplate(label: label,
       }
 
     }
-  triggers {
-    cron('H */8 * * *')
-    pollSCM('* * * * *')
-  }
 }
