@@ -52,11 +52,11 @@ testlogger {
 	showStandardStreams = true
 }
 
-dockerCompose.isRequiredBy(tasks.test.get())
-dockerCompose {
-	useComposeFiles = listOf("docker-compose.yml")
-	captureContainersOutput = false
-	stopContainers = true
-	removeContainers = true
-	removeOrphans = true
-}
+//dockerCompose.isRequiredBy(tasks.test.get())
+//dockerCompose {
+//	useComposeFiles = listOf("docker-compose.yml")
+//	captureContainersOutput = false
+//	stopContainers = true
+//	removeContainers = true
+//	removeOrphans = true
+//}
