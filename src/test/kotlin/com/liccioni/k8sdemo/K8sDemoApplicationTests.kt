@@ -16,5 +16,6 @@ class K8sDemoApplicationTests {
         assertThat(1).isEqualTo(1)
         assertThat(2).isEqualTo(2)
         assertThat(3).isEqualTo(3)
+        assertThat(4).isEqualTo(4)
     }
 }
