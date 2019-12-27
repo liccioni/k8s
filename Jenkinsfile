@@ -1,5 +1,7 @@
 @Library('jenkins-shared-lib') _
 
+properties([pipelineTriggers([pollSCM('H * * * *')])])
+
 deliveryPipeline {
     branch = 'master'
     scmUrl = 'ssh://git@myScmServer.com/repos/myRepo.git'
